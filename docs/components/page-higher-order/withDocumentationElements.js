@@ -8,13 +8,13 @@ import * as components from '~/common/translate-markdown';
 import DocumentationPage from '~/components/DocumentationPage';
 import { HeadingsContext } from '~/components/page-higher-order/withHeadingManager';
 
-export default meta =>
+const withDocumentationElements = meta =>
   withRouter(
     class DocumentationPageHOC extends React.Component {
       render() {
         const { router } = this.props;
         return (
-          <HeadingsContext.Provider value={new HeadingManager(new GithubSlugger(), meta.headings)}>
+          <HeadingsContext.Provider value={new HeadingManager(new GithubSlugger(), meta)}>
             <DocumentationPage
               title={meta.title}
               url={router}
@@ -27,3 +27,5 @@ export default meta =>
       }
     }
   );
+
+export default withDocumentationElements;
